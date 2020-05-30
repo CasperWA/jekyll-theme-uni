@@ -5,6 +5,10 @@
 @import "base/typography";
 @import "base/global";
 
+@import "fontawesome.min.css";
+@import "brands.min.css";
+@import "all.min.css";
+
 // Modules
 @import "modules/buttons";
 // @import "modules/forms";
@@ -15,4 +19,3 @@
 // Import Layouts
 @import "layouts/half";
 @import "layouts/full";
-@import "layouts/card";

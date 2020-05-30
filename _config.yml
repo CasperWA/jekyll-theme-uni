@@ -11,19 +11,26 @@ content: Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis cons
 social:
   - platform: github
     url: https://github.com/CasperWA
+    name: GitHub
   - platform: facebook
     url: https://facebook.com/casperwa
-  - platform: twitter
-    url: casperwa
+    name: facebook
+  # - platform: twitter
+  #   url: casperwa
+  #   name: Twitter
   - platform: linkedin
     url: https://linkedin.com/in/casperwa
+    name: LinkedIn
+  - platform: envelope
+    url: "mailto:casper+website@welzel.nu"
+    name: E-mail
 
 # General settings
 url: https://casper.welzel.nu
 # baseurl: /
 markdown: kramdown
 sharing_image: share.jpg
-google_analytics: UA-167986870-1
+# google_analytics: UA-167986870-1
 
 #### LAYOUT OPTIONS #####
 

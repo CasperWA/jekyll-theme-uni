@@ -16,7 +16,8 @@ body {
   font-weight: 300;
   line-height: 1.75;
   font-size: 100%; // 18px base font size
-  color: black;
+  color: $primary-color;
+  background-color: $third-color;
   overflow-x: hidden;
   margin: 0;
 
@@ -32,13 +33,13 @@ body {
 
 // Text Selection Styling
 ::-moz-selection {
-  background: $primary-color;
-  color: white;
+  background: $third-color;
+  color: $secondary-color;
 }
 
 ::selection {
-  background: $primary-color;
-  color: white;
+  background: $third-color;
+  color: $secondary-color;
 }
 
 /***************

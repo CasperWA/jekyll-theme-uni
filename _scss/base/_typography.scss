@@ -6,25 +6,46 @@ http://typecast.com/blog/a-more-modern-scale-for-web-typography
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin: .5rem 0 1.5rem;
   font-family: $sans-serif;
+  color: $primary-color;
 }
 
 // Headings
 h1, .h1 {
-  font-size: rem(32); // 2x body copy size = 32px
-  line-height: 1.25; // 45px / 36px
+  font-size: rem(28); // 2x body copy size = 32px
+  line-height: 1.125; // 45px / 36px
 }
 
-@media (min-width: 43.75em) {
+@media (max-width: 767px) {
   h1, .h1 {
-    font-size: rem(40); // 2.5x body copy size = 40px
-    line-height: 1.125;
+    // font-size: rem(28); // 2.5x body copy size = 40px
+    // line-height: 1.125;
+    // Keep original settings
+    color: $primary-color-bright;
+  }
+
+  p, .p {
+    color: $primary-color-bright;
   }
 }
 
+// @media (min-width: 800px) {
+//   h1, .h1 {
+//     font-size: rem(28); // 2.5x body copy size = 40px
+//     line-height: 1.125;
+//   }
+// }
+
 @media (min-width: 56.25em) {
   h1, .h1 {
-    font-size: 3em; // 3x body copy size = 48px
+    font-size: rem(34); // 3x body copy size = 48px
     line-height: 1.05; // keep to a multiple of the 20px line height and something more appropriate for display headings
+  }
+}
+
+@media (min-width: 76.81em) {
+  h1, .h1 {
+    font-size: rem(48); // 3x body copy size = 48px
+    line-height: 1.015; // keep to a multiple of the 20px line height and something more appropriate for display headings
   }
 }
 

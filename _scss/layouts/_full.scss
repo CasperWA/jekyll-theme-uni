@@ -1,17 +1,13 @@
 .full {
   min-height: 100vh;
-  color: white;
+  color: $primary-color;
   font-family: $sans-serif;
   font-weight: 300;
-  background-color: #213334;
+  background-color: $third-color;
 
-  .pageTitle {
-    // font-weight: 300;
-  }
-
-  .socialLinks__link {
-    @include button--outline(white, black);
-  }
+  // .pageTitle {
+  //   font-weight: 300;
+  // }
 
   &__image {
     background-size: cover;
@@ -35,6 +31,9 @@
       display: flex;
       height: 100vh;
       align-items: center;
+    }
+
+    &.content--right {
       justify-content: flex-end;
     }
 

@@ -1,3 +1,6 @@
 <div class="socialLinks">{% for link in site.social %}
-        <a class="socialLinks__link socialLInk__{{ link.platform }}" href="{{ link.url }}" target="_blank">{{ link.platform }}</a>
+        <a class="socialLinks__link socialLink__{{ link.platform }}" href="{{ link.url }}" target="_blank" rel="noopener noreferrer">
+            <span class="fa{% if link.platform != 'envelope' %}b{% else %}s{% endif %} fa-{{ link.platform }}" aria-hidden="true"></span>
+            <span class="screen-reader-text">{{ link.name }}</span>
+        </a>
 {% endfor %}      </div>

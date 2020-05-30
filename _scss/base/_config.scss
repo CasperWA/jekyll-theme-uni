@@ -1,8 +1,12 @@
 /***************
 COLOR VARIABLES
 ***************/
-$primary-color: purple;
-$link-color: $primary-color;
+$primary-color: rgba(255, 255, 255, 0.80);
+$primary-color-bright: rgba(255, 255, 255, 0.85);
+// $primary-color-bright: purple;
+$secondary-color: #F9AA33;
+$third-color: #232F34;
+$link-color: $secondary-color;
 
 /***************
 CONSISTENT SETTINGS

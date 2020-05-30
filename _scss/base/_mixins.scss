@@ -41,13 +41,13 @@
 
 // Responsive background images
 @mixin responsivebackground($sm, $md, $lg) {
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     background-image: url("/assets/img/"+$sm);
   }
-  @media screen and (min-width: 801px) and (max-width: 1200px) {
+  @media screen and (min-width: 769px) and (max-width: 1200px) {
     background-image: url("/assets/img/"+$md);
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1201px) {
     background-image: url("/assets/img/"+$lg);
   }
 }

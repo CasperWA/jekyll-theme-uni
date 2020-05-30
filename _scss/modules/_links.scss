@@ -1,0 +1,19 @@
+a {
+  color: $link-color;
+  transition: color 0.14s ease-in-out;
+
+  &:hover {
+    color: darken($link-color, 15%);
+  }
+}
+
+.socialLinks__link {
+  @include button--outline();
+  // @include button--circle();
+}
+
+@media (max-width: 767px) {
+  .socialLinks__link {
+    @include button--outline($primary-color-bright, $secondary-color);
+  }
+}

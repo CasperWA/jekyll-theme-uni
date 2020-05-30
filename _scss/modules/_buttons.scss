@@ -1,0 +1,68 @@
+/***************
+BUTTON DEFAULTS
+***************/
+
+@mixin button--outline($btn-color: $primary-color, $btn-font-color: $secondary-color) {
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  font-family: $sans-serif;
+  text-decoration: none;
+  color: $btn-color;
+  font-size: 0.95em;
+  line-height: 1.2em;
+  font-weight: 300;
+  padding: 0.5em 0.8em;
+  // padding: 0.5em 1.5em;  // Possibly use for text in button
+  border: 1px solid $btn-color;
+  border-radius: 4px;
+  // cursor: pointer;
+  margin: 0 0.2em;
+
+  &:hover {
+    color: $btn-font-color;
+    border-color: $btn-font-color;
+    transition: color 0.14s ease-in-out, border-color 0.14s ease-in-out;
+  }
+}
+
+@mixin button--circle($btn-color: $primary-color, $btn-font-color: $secondary-color) {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 2px solid $btn-color;
+  border-radius: 50%;
+  box-sizing: border-box;
+  color: $btn-color;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 1em;
+  height: 2.22222em;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 2.22222em;
+  padding: 0;
+  position: relative;
+  width: 2.22222em;
+  transition: color 0.14s ease-in-out, border-color 0.14s ease-in-out;
+  text-decoration: none;
+  margin: 0 0.2em;
+
+  &:hover {
+    color: $btn-font-color;
+    border-color: $btn-font-color;
+  }
+}
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+}

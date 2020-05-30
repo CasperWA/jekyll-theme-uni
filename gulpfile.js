@@ -22,7 +22,8 @@ function jekyll_build() {
  */
 function jekyll_rebuild() {
     jekyll_build();
-    browserSync.reload();;
+    browserSync.reload();
+    return Promise.resolve()
 };
 
 /**
@@ -33,16 +34,16 @@ function browser_sync() {
         server: {
             baseDir: '_site'
         }
-    });;
+    });
 };
 
 /**
  * Compile files from assets/scss into both _site/css (for live injecting) and assets (for future jekyll builds)
  */
 function sass2css() {
-    return src('assets/scss/style.scss')
+    return src('_scss/style.scss')
         .pipe(sass({
-            includePaths: ['scss'],
+            includePaths: ['_scss'],
             onError: browserSync.notify
         }))
         .pipe(prefix(['last 3 versions'], { cascade: true }))
@@ -53,12 +54,8 @@ function sass2css() {
 };
 
 exports.build = series(sass2css, jekyll_build, browser_sync)
-/**
- * Default task, running just `gulp` will compile the sass,
- * compile the jekyll site, launch BrowserSync & watch files.
- */
 exports.default = function() {
     browser_sync();
-    watch(['assets/scss/*.scss', 'assets/scss/*/*.scss'], { ignoreInitial: false }, series(sass2css));
-    watch(['*.html', '_layouts/*.html', '_posts/*'], { ignoreInitial: false }, series(jekyll_rebuild));
+    watch(['_scss/*.scss', '_scss/*/*.scss'], { ignoreInitial: false }, series(sass2css));
+    watch(['*.html', '_layouts/*.html', '_includes/*.html', '_config.yml'], { ignoreInitial: false }, series(jekyll_rebuild));
 };
