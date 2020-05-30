@@ -28,13 +28,6 @@ h1, .h1 {
   }
 }
 
-// @media (min-width: 800px) {
-//   h1, .h1 {
-//     font-size: rem(28); // 2.5x body copy size = 40px
-//     line-height: 1.125;
-//   }
-// }
-
 @media (min-width: 56.25em) {
   h1, .h1 {
     font-size: rem(34); // 3x body copy size = 48px
@@ -42,7 +35,7 @@ h1, .h1 {
   }
 }
 
-@media (min-width: 76.81em) {
+@media (min-width: 76.95em) {
   h1, .h1 {
     font-size: rem(48); // 3x body copy size = 48px
     line-height: 1.015; // keep to a multiple of the 20px line height and something more appropriate for display headings
