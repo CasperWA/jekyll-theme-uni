@@ -35,7 +35,7 @@ h1, .h1 {
   }
 }
 
-@media (min-width: 76.95em) {
+@media (min-width: 77.5em) {
   h1, .h1 {
     font-size: rem(48); // 3x body copy size = 48px
     line-height: 1.015; // keep to a multiple of the 20px line height and something more appropriate for display headings
