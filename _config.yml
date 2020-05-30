@@ -1,8 +1,8 @@
 # Your Name or Company
-title: Uni Kravitz
+title: Casper Welzel Andersen
 
 # Description of your website. This is used for social sharing.
-description:  The beautiful website of artist, poet, craftsperson, cyclist, and avid juggler, Uni Kravitz.
+description: Website of Casper Welzel Andersen.
 
 # A brief blurb about yourself
 content: Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum.
@@ -10,20 +10,20 @@ content: Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis cons
 # Add your social links
 social:
   - platform: github
-    url: https://github.com/brianmaierjr
+    url: https://github.com/CasperWA
   - platform: facebook
-    url: https://facebook.com/brianmaierjr
+    url: https://facebook.com/casperwa
   - platform: twitter
-    url: https://twitter.com/brianmaierjr
+    url: casperwa
   - platform: linkedin
-    url: brianmaierjr
+    url: https://linkedin.com/in/casperwa
 
 # General settings
-# url: http://brianmaierjr.github.com/uni
-# baseurl: "/uni" 
+url: https://casper.welzel.nu
+# baseurl: /
 markdown: kramdown
 sharing_image: share.jpg
-google_analytics: "UA-58263416-1" # google analytics tracking
+google_analytics: UA-167986870-1
 
 #### LAYOUT OPTIONS #####
 

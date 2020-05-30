@@ -1,11 +1,10 @@
-var gulp        = require('gulp');
+const { series, src, dest, watch } = require('gulp')
 var browserSync = require('browser-sync');
-var sass        = require('gulp-sass');
-var prefix      = require('gulp-autoprefixer');
-var cp          = require('child_process');
-var cssnano 		= require('gulp-cssnano');
+var sass = require('gulp-sass');
+var prefix = require('gulp-autoprefixer');
+const { spawn } = require('child_process');
+var cssnano = require('gulp-cssnano');
 
-var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
 var messages = {
     jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
 };
@@ -13,57 +12,53 @@ var messages = {
 /**
  * Build the Jekyll Site
  */
-gulp.task('jekyll-build', function (done) {
+function jekyll_build() {
     browserSync.notify(messages.jekyllBuild);
-    return cp.spawn( jekyll , ['build'], {stdio: 'inherit'})
-        .on('close', done);
-});
+    return spawn('jekyll', ['build'], {stdio: 'inherit'}).on('close', (code) => {console.log(`Exited with code ${code}`)});
+};
 
 /**
  * Rebuild Jekyll & do page reload
  */
-gulp.task('jekyll-rebuild', gulp.series('jekyll-build', function () {
-    browserSync.reload();
-}));
+function jekyll_rebuild() {
+    jekyll_build();
+    browserSync.reload();;
+};
 
 /**
  * Wait for jekyll-build, then launch the Server
  */
-gulp.task('browser-sync', gulp.series(sass2css, 'jekyll-build', function() {
+function browser_sync() {
     browserSync({
         server: {
             baseDir: '_site'
         }
-    });
-}));
+    });;
+};
 
 /**
- * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
+ * Compile files from assets/scss into both _site/css (for live injecting) and assets (for future jekyll builds)
  */
 function sass2css() {
-    return gulp.src('assets/scss/style.scss')
+    return src('assets/scss/style.scss')
         .pipe(sass({
             includePaths: ['scss'],
             onError: browserSync.notify
         }))
         .pipe(prefix(['last 3 versions'], { cascade: true }))
 				.pipe(cssnano())
-        .pipe(gulp.dest('_site/assets/css'))
+        .pipe(dest('_site/assets/css'))
         .pipe(browserSync.reload({stream:true}))
-        .pipe(gulp.dest('assets/css'));
+        .pipe(dest('assets/css'));
 };
 
-/**
- * Watch scss files for changes & recompile
- * Watch html/md files, run jekyll & reload BrowserSync
- */
-gulp.task('watch', function () {
-    gulp.watch(['assets/scss/*.scss', 'assets/scss/*/*.scss'], ['sass']);
-    gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
-});
-
+exports.build = series(sass2css, jekyll_build, browser_sync)
 /**
  * Default task, running just `gulp` will compile the sass,
  * compile the jekyll site, launch BrowserSync & watch files.
  */
-gulp.task('default', gulp.series('browser-sync', 'watch'));
+exports.default = function() {
+    browser_sync();
+    watch(['assets/scss/*.scss', 'assets/scss/*/*.scss'], { ignoreInitial: false }, series(sass2css));
+    watch(['*.html', '_layouts/*.html', '_posts/*'], { ignoreInitial: false }, series(jekyll_rebuild));
+};
