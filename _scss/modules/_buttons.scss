@@ -12,17 +12,17 @@ BUTTON DEFAULTS
   font-size: 0.95em;
   line-height: 1.2em;
   font-weight: 300;
-  padding: 0.5em 0.8em;
+  padding: 0.5em 0.75em;
   // padding: 0.5em 1.5em;  // Possibly use for text in button
   border: 1px solid $btn-color;
   border-radius: 4px;
   // cursor: pointer;
-  margin: 0 0.2em;
+  // margin: 0 0.3em;
+  transition: color 0.14s ease-in-out, border-color 0.14s ease-in-out;
 
   &:hover {
     color: $btn-font-color;
     border-color: $btn-font-color;
-    transition: color 0.14s ease-in-out, border-color 0.14s ease-in-out;
   }
 }
 

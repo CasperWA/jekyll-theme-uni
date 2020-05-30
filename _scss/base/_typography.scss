@@ -15,7 +15,7 @@ h1, .h1 {
   line-height: 1.125; // 45px / 36px
 }
 
-@media (max-width: 767px) {
+@include max(md) {
   h1, .h1 {
     // font-size: rem(28); // 2.5x body copy size = 40px
     // line-height: 1.125;

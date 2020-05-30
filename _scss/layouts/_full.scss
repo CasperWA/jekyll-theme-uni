@@ -1,13 +1,16 @@
 .full {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   color: $primary-color;
   font-family: $sans-serif;
   font-weight: 300;
   background-color: $third-color;
 
-  // .pageTitle {
-  //   font-weight: 300;
-  // }
+  .pageTitle {
+    // color: $primary-color;
+    font-weight: 300;
+  }
 
   &__image {
     background-size: cover;
@@ -47,7 +50,8 @@
   }
 
   &__content {
-    padding: 20px;
+    // padding: 20px;
+    padding: $padding;
 
     @include min(md) {
       max-width: 50vw;

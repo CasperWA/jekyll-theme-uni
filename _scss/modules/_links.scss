@@ -1,10 +1,18 @@
 a {
-  color: $link-color;
+  color: $primary-color;
+  text-decoration: none;
   transition: color 0.14s ease-in-out;
 
   &:hover {
-    color: darken($link-color, 15%);
+    color: $link-color;
   }
+}
+
+.socialLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 13em;
 }
 
 .socialLinks__link {
