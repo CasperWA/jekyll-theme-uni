@@ -12,9 +12,9 @@ var messages = {
 /**
  * Build the Jekyll Site
  */
-function jekyll_build() {
+function jekyll_build(src='.', dest='_site') {
     browserSync.notify(messages.jekyllBuild);
-    return spawn('jekyll', ['build'], {stdio: 'inherit'}).on('close', (code) => {console.log(`Exited with code ${code}`)});
+    return spawn('jekyll', ['build', '-s', src, '-d', dest], {stdio: 'inherit'}).on('close', (code) => {console.log(`Exited with code ${code}`)});
 };
 
 /**
@@ -53,7 +53,11 @@ function sass2css() {
         .pipe(dest('assets/css'));
 };
 
-exports.build = series(sass2css, jekyll_build, browser_sync)
+exports.build = function(cb, src, dest) {
+    sass2css();
+    jekyll_build(src, dest);
+    return cb();
+};
 exports.default = function() {
     browser_sync();
     watch(['_scss/*.scss', '_scss/*/*.scss'], { ignoreInitial: false }, series(sass2css));
