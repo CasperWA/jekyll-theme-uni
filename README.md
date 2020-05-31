@@ -1,29 +1,19 @@
-![Uni Jekyll Theme](/assets/img/share.jpg)
-
 # Uni – A one-page Jekyll theme
 
-[View Half Demo](http://brianmaierjr.com/uni/) | [View Full Demo](http://brianmaierjr.com/uni/full) | [View Card Demo](http://brianmaierjr.com/uni/card)
+This theme is forked from [brianmaierjr](https://github.com/brianmaierjr).
 
-## Features
+## Updates
 
-* Minimal, One-Page Design
-* Fast and responsive
-* Flexible
-* Built using these tools:
-  * GULP
-  * SASS
-  * BROWSERSYNC
-  * AUTOPREFIXER
-* A modular, type scale
-* 3 different layouts with additional options
-* Responsive Images for performance
-* Social Meta Tags
+It has been adapted with:
 
-## Browser Support
+- Using only the full page layout
+- The possibility of having circular buttons
+- Using [font-awesome](https://fontawesome.com/) logos/icons
+- Rearranging the text position to quadrants of the site (only upper right has been introduced, but the bones are there to introduce others)
+- Using the [Montserrat](https://fonts.google.com/specimen/Montserrat) font by Google
+- For the right position, the text is left-aligned with the center of the page
 
-This theme will look great and work in most newer browsers. If you see an issue please feel free to [contact me](mailto:brimaidesigns@gmail.com).
-
----
+The gulpfile has been updated to support [gulp v4](https://gulpjs.com/).
 
 ## Setup
 
@@ -33,97 +23,60 @@ This theme will look great and work in most newer browsers. If you see an issue 
 4. Install gulp dependencies by running `npm install`
 5. Run Jekyll and watch files by running `bundle exec gulp`
 
-Please note that any changes made to the `config.yml` will require that you stop gulp and start it again.
-
----
-
 ## Site/Layout Settings
 
-The main settings can be found inside the `_config.yml` file:
+The main settings can be found inside the [`_config.yml`](_config.yml) file:
 
-* **title:** you or your company's name
-* **description:** description of your site that will be used when your site is shared or posted on social media
-* **sharing_image:** name of your image (example.jpg). This image should be placed in the `assets/img/` folder
-* **content:** a brief blurb about yourself
-* **url:** your url
-* **social** diverse social media usernames (optional)
-  * **platform**: display name for social media or external link
-  * **url**: destination for the link
-* **google_analytics** Google Analytics key (optional)
-
----
-
-![Uni Jekyll Theme](layout--half.jpg)
-
-## Half Layout
-
-* **half_side:** which side of the page your content is on [left or right]
-
----
-
-![Uni Jekyll Theme](layout--full.jpg)
-
-## Full layout
-
-* **full_text_position:** where on the page the text will appear [left, center, or right]
-
----
-
-![Uni Jekyll Theme](layout--card.jpg)
-
-## Card layout
-
-The background image and other style customizations can be changed in `assets/scss/layouts/_card.scss`
-
----
+- **title**: you or your company's name
+- **description**: description of your site that will be used when your site is shared or posted on social media
+- **social**: social media usernames (optional)
+  Email can be added here, as well as other desired buttons
+  - **platform**: font-awesome icon and css class identifier
+  - **url**: destination for the link
+  - **name**: text shown for screen readers
+- **url**: your url
+- **baseurl**: uri for the base of your site (if not equal to the url)
+- **sharing_image**: name of your image.
+  This image should be placed in the [`assets/img/`](assets/img/) folder
+- **google_analytics**: Google Analytics key (optional)
+- **full_text_position:** where on the page the text will appear [`left`, `center`, `right`, or `right-upper`]
 
 ## Further Customizations
 
-### Change Layout
-
-By default, Uni is set to use the `half` layout. To change the `layout` change the front matter in `index.html`
-
-For example, the layout below is using the `full` layout. The other options available are `half` and `card`.
-
-```
----
-layout: full
-title: Uni – A one-page Jekyll theme
----
-```
-
 ### Styling
 
-While running `bundle exec gulp` modify any of the files in the `assets/scss/` folder and your browser will update automatically. No reload required!
+While running `bundle exec gulp` modify any of the files in the [`_scss/`](_scss/) folder and your browser will update automatically.
+No reload required!
 
-The layouts all have their own stylesheets found in `assets/scss/layouts/`. This is where images for each of the three layouts can be found. In addition, this is where you can change text color, layout, etc.
+The layouts all have their own stylesheets found in [`_scss/layouts/`](_scss/layouts/).
 
-#### Primary color
+#### Color scheme
 
-The primary color is used for headings, accents, and buttons. It can be changed by modifying the `assets/scss/base/_config.scss` file.
+The set of colors for the color scheme used for headings, accents, and buttons can be changed by modifying the [`_scss/base/_config.scss`](_scss/base/_config.scss) file.
 
 ### Add Content
 
-Add content in `config.yml` or alter `index.html` and change `{{ content }}` to be whatever you want.
+Add content in [`_config.yml`](_config.yml) or [`index.html`](index.html).
 
 ### Imagery
 
-As stated above, the images are set in the respective stylesheets found in `assets/scss/layouts/`.
+The theme is setup to use responsive images that require three different image sizes.
+This allows the browser to serve the appropriate image based on the screen size.
+Recommended image widths are:
 
-We are using responsive images that require three different image sizes. This allows the browser to serve the appropriate image based on the screen size. Recommended image widths are:
+- Small: 768px wide
+- Medium: 1200px wide
+- Large: 1600px wide
 
-* #### Small: 768px wide
-* #### Medium: 1200px wide
-* #### Large: 1600px wide
-
-To replace the images, modify the names in the `responsivebackground` mixin as shown below.
+To replace the images, modify the names in the `responsivebackground` mixin as shown below in the scss file found under [`_scss/layouts/`](_scss/layouts/).
 *Make sure to include the file extension!*
 
-```
-@include responsivebackground("half-sm.jpg", "half-md.jpg", "half-lg.jpg");
+```scss
+@include responsivebackground("small.jpg", "medium.jpg", "large.jpg");
 ```
 
-When uploading images please keep file size in mind. For optimizing, we recommend using [TinyPNG](https://tinypng.com) and [TinyJPG](https://tinyjpg.com).
+When uploading images please keep file size in mind.
+For optimizing, one could use [TinyPNG](https://tinypng.com) and [TinyJPG](https://tinyjpg.com).
 
 ### Favicon
 
