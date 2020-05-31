@@ -9,13 +9,15 @@
 
   .pageTitle {
     // color: $primary-color;
-    font-weight: 300;
+    // font-weight: 300;
+    font-style: bold;
   }
 
   &__image {
     background-size: cover;
     background-position: center;
-    @include responsivebackground("full-sm.jpg", "full-md.jpg", "full-lg.jpg");
+    // @include responsivebackground("full-sm.jpg", "full-md.jpg", "full-lg.jpg");
+    @include responsivebackground("lac-leman_min-sm.jpg", "lac-leman_min-md.jpg", "lac-leman_min-lg.jpg");
     min-height: 50vh;
 
     @include min(md) {
@@ -38,6 +40,14 @@
 
     &.content--right {
       justify-content: flex-end;
+
+      .pageTitle {
+        width: 50vw;
+      }
+
+      &.-upper {
+        height: 50vh;
+      }
     }
 
     &.content--left {
@@ -46,6 +56,15 @@
 
     &.content--center {
       justify-content: center;
+    }
+
+    &.content--right-upper {
+      justify-content: flex-end;
+      height: 50vh;
+
+      .pageTitle {
+        width: 50vw;
+      }
     }
   }
 

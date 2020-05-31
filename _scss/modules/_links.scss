@@ -4,7 +4,25 @@ a {
   transition: color 0.14s ease-in-out;
 
   &:hover {
-    color: $link-color;
+    color: $secondary-color;
+  }
+}
+
+// @media (width: 768px) {
+//   a {
+//     transition: none;
+//   }
+// }
+
+@include max(sm) {
+  a {
+    color: $primary-color-bright;
+    text-decoration: none;
+    transition: color 0.14s ease-in-out;
+
+    &:hover {
+      color: $secondary-color;
+    }
   }
 }
 

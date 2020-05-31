@@ -1,12 +1,11 @@
 /***************
 COLOR VARIABLES
 ***************/
-$primary-color: rgba(255, 255, 255, 0.80);
+$primary-color: rgba(0, 0, 0, 0.8);
 $primary-color-bright: rgba(255, 255, 255, 0.85);
 // $primary-color-bright: purple;
 $secondary-color: #F9AA33;
 $third-color: #232F34;
-$link-color: $secondary-color;
 
 /***************
 CONSISTENT SETTINGS
@@ -30,4 +29,4 @@ $browser-context: 16; // Default
 /***************
 RESPONSIVE BREAKPOINTS
 ***************/
-$breakpoints: (md: 768px);
+$breakpoints: (md: 768px, sm: 767px);

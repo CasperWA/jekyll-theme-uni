@@ -11,11 +11,11 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 
 // Headings
 h1, .h1 {
-  font-size: rem(28); // 2x body copy size = 32px
+  font-size: rem(26); // 2x body copy size = 32px
   line-height: 1.125; // 45px / 36px
 }
 
-@include max(md) {
+@include max(sm) {
   h1, .h1 {
     // font-size: rem(28); // 2.5x body copy size = 40px
     // line-height: 1.125;
@@ -28,14 +28,21 @@ h1, .h1 {
   }
 }
 
-@media (min-width: 56.25em) {
+// @include min(md) {
+//   h1, .h1 {
+//     font-size: rem(26); // 3x body copy size = 48px
+//     line-height: 1.125; // keep to a multiple of the 20px line height and something more appropriate for display headings
+//   }
+// }
+
+@media (min-width: 59.38em) {
   h1, .h1 {
     font-size: rem(34); // 3x body copy size = 48px
     line-height: 1.05; // keep to a multiple of the 20px line height and something more appropriate for display headings
   }
 }
 
-@media (min-width: 77.5em) {
+@media (min-width: 81.57em) {
   h1, .h1 {
     font-size: rem(48); // 3x body copy size = 48px
     line-height: 1.015; // keep to a multiple of the 20px line height and something more appropriate for display headings

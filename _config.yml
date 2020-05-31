@@ -2,7 +2,7 @@
 title: Casper Welzel Andersen
 
 # Description of your website. This is used for social sharing.
-description: Website of Casper Welzel Andersen.
+description: Developer and scientist Casper Welzel Andersen.
 
 # Add your social links
 social:
@@ -35,4 +35,4 @@ sharing_image: share.jpg
 half_side: right
 
 # Full layout
-full_text_position: right # left, right or center
+full_text_position: right-upper # left, right or center
