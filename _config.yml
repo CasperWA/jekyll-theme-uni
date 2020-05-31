@@ -35,4 +35,15 @@ sharing_image: share.jpg
 # half_side: right
 
 # Full layout
-full_text_position: right-upper # left, right or center
+full_text_position: right upper # left, right, center. One can add upper, e.g., "right upper".
+
+# Build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - gulpfile.js
+  - package-lock.json
+  - package.json
+  - README.md
+  - LICENSE

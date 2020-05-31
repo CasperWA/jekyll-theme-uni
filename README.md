@@ -9,7 +9,7 @@ It has been adapted with:
 - Using only the full page layout
 - The possibility of having circular buttons
 - Using [font-awesome](https://fontawesome.com/) logos/icons
-- Rearranging the text position to quadrants of the site (only upper right has been introduced, but the bones are there to introduce others)
+- Rearranging the text position to quadrants of the site (only `upper` has been introduced so far)
 - Using the [Montserrat](https://fonts.google.com/specimen/Montserrat) font by Google
 - For the right position, the text is left-aligned with the center of the page
 
@@ -39,7 +39,8 @@ The main settings can be found inside the [`_config.yml`](_config.yml) file:
 - **sharing_image**: name of your image.
   This image should be placed in the [`assets/img/`](assets/img/) folder
 - **google_analytics**: Google Analytics key (optional)
-- **full_text_position:** where on the page the text will appear [`left`, `center`, `right`, or `right-upper`]
+- **full_text_position:** where on the page the text will appear (`left`, `center`, `right`).
+  This can be modified by adding `upper`, e.g., `right upper`.
 
 ## Further Customizations
 
@@ -64,9 +65,9 @@ The theme is setup to use responsive images that require three different image s
 This allows the browser to serve the appropriate image based on the screen size.
 Recommended image widths are:
 
-- Small: 768px wide
-- Medium: 1200px wide
-- Large: 1600px wide
+- *Small*: 768px wide
+- *Medium*: 1200px wide
+- *Large*: 1600px wide
 
 To replace the images, modify the names in the `responsivebackground` mixin as shown below in the scss file found under [`_scss/layouts/`](_scss/layouts/).
 *Make sure to include the file extension!*

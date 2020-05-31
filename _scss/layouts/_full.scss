@@ -41,29 +41,36 @@
     &.content--right {
       justify-content: flex-end;
 
-      .pageTitle {
-        width: 50vw;
+      @include min(md) {
+        .pageTitle {
+          width: 50vw;  // left-align text along center
+        }
       }
 
-      &.-upper {
-        height: 50vh;
+      &.upper {
+        @include min(md) {
+          height: 50vh;
+        }
       }
     }
 
     &.content--left {
       justify-content: flex-start;
+
+      &.upper {
+        @include min(md) {
+          height: 50vh;
+        }
+      }
     }
 
     &.content--center {
       justify-content: center;
     }
 
-    &.content--right-upper {
-      justify-content: flex-end;
-      height: 50vh;
-
-      .pageTitle {
-        width: 50vw;
+    &.upper {
+      @include min(md) {
+        height: 50vh;
       }
     }
   }
@@ -71,6 +78,7 @@
   &__content {
     // padding: 20px;
     padding: $padding;
+    max-width: 100vw;
 
     @include min(md) {
       max-width: 50vw;
