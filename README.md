@@ -1,6 +1,6 @@
 # Uni – A one-page Jekyll theme
 
-This theme is forked from [brianmaierjr](https://github.com/brianmaierjr).
+This theme is forked from [brianmaierjr](https://github.com/brianmaierjr/uni/).
 
 ## Updates
 
