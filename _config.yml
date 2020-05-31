@@ -27,7 +27,7 @@ url: https://casper.welzel.nu
 # baseurl: /
 markdown: kramdown
 sharing_image: share.jpg
-# google_analytics: UA-167986870-1
+google_analytics: UA-167986870-1
 
 #### LAYOUT OPTIONS #####
 
