@@ -54,6 +54,12 @@ function sass2css() {
 };
 
 exports.build = function(cb, src, dest) {
+    if ('WEB_SRC' in process.env) {
+        src = process.env.WEB_SRC
+    }
+    if ('WEB_DEST' in process.env) {
+        dest = process.env.WEB_DEST
+    }
     sass2css();
     jekyll_build(src, dest);
     return cb();
