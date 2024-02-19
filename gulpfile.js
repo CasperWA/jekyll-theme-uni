@@ -1,7 +1,7 @@
 const { series, src, dest, watch } = require('gulp')
 var browserSync = require('browser-sync');
-var sass = require('gulp-sass');
-var prefix = require('gulp-autoprefixer');
+const sass = require('gulp-sass')(require('sass'));
+var autoprefixer = require('gulp-autoprefixer');
 const { spawn } = require('child_process');
 var cssnano = require('gulp-cssnano');
 
@@ -46,7 +46,7 @@ function sass2css() {
             includePaths: ['_scss'],
             onError: browserSync.notify
         }))
-        .pipe(prefix(['last 3 versions'], { cascade: true }))
+        .pipe(autoprefixer(['last 3 versions'], { cascade: true }))
 				.pipe(cssnano())
         .pipe(dest('_site/assets/css'))
         .pipe(browserSync.reload({stream:true}))

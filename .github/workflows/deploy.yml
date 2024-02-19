@@ -14,14 +14,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Ruby environment
-        run: sudo apt-get update && sudo apt-get install ruby-full build-essential zlib1g-dev
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts'
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      # - name: Setup Ruby environment
+      #   run: sudo apt-get update && sudo apt-get install -y ruby-full build-essential zlib1g-dev npm
 
       - name: Install Jekyll
         run: sudo gem install jekyll
-
-      - name: Install Bundler
-        run: sudo gem install bundler
 
       - name: Install gems in package
         run: bundle install
