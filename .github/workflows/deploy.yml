@@ -13,42 +13,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
-          bundler-cache: true
-
-      # - name: Setup Ruby environment
-      #   run: sudo apt-get update && sudo apt-get install -y ruby-full build-essential zlib1g-dev npm
-
-      - name: Install Jekyll
-        run: sudo gem install jekyll
-
-      - name: Install gems in package
-        run: bundle install
-
-      - name: Install gulp dependencies
-        run: npm install
-
-      - name: Build site
-        run: bundle exec gulp build
-        env:
-          WEB_DEST: site
+          ref: master
 
       - name: Install SSH key for welzel.nu
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          mkdir -p ~/.ssh
-          chmod 0700 ~/.ssh
-
-          PRIVATE_KEY=~/.ssh/id_deploy
+          SSH_DIR=~/.ssh
+          PRIVATE_KEY=${SSH_DIR}/id_deploy
           PUBLIC_KEY=${PRIVATE_KEY}.pub
-          KNOWN_HOSTS=~/.ssh/known_hosts
-          SSH_CONFIG=~/.ssh/config
+          KNOWN_HOSTS=${SSH_DIR}/known_hosts
+          SSH_CONFIG=${SSH_DIR}/config
+          
+          mkdir -p ${SSH_DIR}
+
+          ssh-keyscan ${{ secrets.SSH_HOST }} >> ${KNOWN_HOSTS}
 
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ${PRIVATE_KEY}
           echo "${{ secrets.SSH_PUBLIC_KEY }}" > ${PUBLIC_KEY}
@@ -56,18 +36,22 @@ jobs:
           chmod 600 ${PRIVATE_KEY}
           chmod 644 ${PUBLIC_KEY}
 
-          ssh-keyscan welzel.nu >> ${KNOWN_HOSTS}
-          chmod 600 ${KNOWN_HOSTS}
+          ssh-agent -a ${SSH_AUTH_SOCK} > /dev/null
+          ssh-add ${PRIVATE_KEY}
 
           cat > ${SSH_CONFIG} << EOL
-          Host welzel.nu
+          Host welzel-nu
             Hostname ${{ secrets.SSH_HOST }}
             User deploy
             IdentityFile ${PRIVATE_KEY}
           EOL
-          chmod 600 ${SSH_CONFIG}
 
       - name: Deploy site
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          git remote add deploy deploy@welzel.nu:~/jekyll-theme-uni.git
+          git config --global user.email "casper@welzel.nu"
+          git config --global user.name "Casper Welzel Andersen"
+
+          git remote add deploy deploy@welzel-nu:~/jekyll-theme-uni.git
           git push -f deploy master

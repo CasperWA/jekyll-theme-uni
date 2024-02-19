@@ -1,0 +1,38 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.repository == 'CasperWA/jekyll-theme-uni'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Install Jekyll
+        run: sudo gem install jekyll
+
+      - name: Install gems in package
+        run: bundle install
+
+      - name: Install gulp dependencies
+        run: npm install
+
+      - name: Build site
+        run: bundle exec gulp build
+        env:
+          WEB_DEST: site
