@@ -18,10 +18,10 @@ jobs:
         run: sudo apt-get update && sudo apt-get install ruby-full build-essential zlib1g-dev
 
       - name: Install Jekyll
-        run: gem install jekyll
+        run: sudo gem install jekyll
 
       - name: Install Bundler
-        run: gem install bundler
+        run: sudo gem install bundler
 
       - name: Install gems in package
         run: bundle install
