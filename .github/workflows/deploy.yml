@@ -16,10 +16,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: 'package-lock.json'
+          node-version: '20'
 
       - uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '3.0'
           bundler-cache: true
 
       # - name: Setup Ruby environment
