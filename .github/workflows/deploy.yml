@@ -1,0 +1,66 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.repository == 'CasperWA/jekyll-theme-uni'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby environment
+        run: sudo apt-get update && sudo apt-get install ruby-full build-essentials zlib1g-dev
+
+      - name: Install Jekyll
+        run: gem install jekyll
+
+      - name: Install Bundler
+        run: gem install bundler
+
+      - name: Install gems in package
+        run: bundle install
+
+      - name: Install gulp dependencies
+        run: npm install
+
+      - name: Build site
+        run: bundle exec gulp build
+        env:
+          WEB_DEST: site
+
+      - name: Install SSH key for welzel.nu
+        run: |
+          mkdir -p ~/.ssh
+          chmod 0700 ~/.ssh
+
+          PRIVATE_KEY=~/.ssh/id_deploy
+          PUBLIC_KEY=${PRIVATE_KEY}.pub
+          KNOWN_HOSTS=~/.ssh/known_hosts
+          SSH_CONFIG=~/.ssh/config
+
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ${PRIVATE_KEY}
+          echo "${{ secrets.SSH_PUBLIC_KEY }}" > ${PUBLIC_KEY}
+
+          chmod 600 ${PRIVATE_KEY}
+          chmod 644 ${PUBLIC_KEY}
+
+          ssh-keyscan welzel.nu >> ${KNOWN_HOSTS}
+          chmod 600 ${KNOWN_HOSTS}
+
+          cat > ${SSH_CONFIG} << EOL
+          Host welzel.nu
+            Hostname ${{ secrets.SSH_HOST }}
+            User deploy
+            IdentityFile ${PRIVATE_KEY}
+          EOL
+          chmod 600 ${SSH_CONFIG}
+
+      - name: Deploy site
+        run: |
+          git remote add deploy deploy@welzel.nu:~/jekyll-theme-uni.git
+          git push -f deploy master
