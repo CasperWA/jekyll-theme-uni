@@ -5,6 +5,7 @@ on:
     workflows: ["Test building site"]
     types: [completed]
     branches: [master]
+  workflow_dispatch:
 
 env:
   DEPLOY_BRANCH: master
