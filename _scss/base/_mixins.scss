@@ -28,7 +28,7 @@
 }
 
 // Responsive Mixin
-// @include max((md);
+// @include max(md);
 @mixin max($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $value: map-get($breakpoints, $breakpoint);
