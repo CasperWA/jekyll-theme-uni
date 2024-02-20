@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${DEPLOY_BRANCH}
+          ref: ${{ env.DEPLOY_BRANCH }}
           fetch-depth: 0
 
       - name: Install SSH key for welzel.nu
@@ -58,7 +58,7 @@ jobs:
 
       - name: Check if there are changes with remote
         run: |
-          git fetch deploy refs/heads/${DEPLOY_BRANCH}
+          git fetch deploy refs/heads/${{ env.DEPLOY_BRANCH }}
 
           if [ "$(git status -uall --porcelain)" ]; then
             echo "There are changes to the output on this push; pushing the changes."
@@ -71,4 +71,4 @@ jobs:
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          git push -f deploy ${DEPLOY_BRANCH}
+          git push -f deploy ${{ env.DEPLOY_BRANCH }}
