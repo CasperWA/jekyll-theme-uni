@@ -60,11 +60,11 @@ jobs:
         run: |
           git fetch deploy refs/heads/${{ env.DEPLOY_BRANCH }}
 
-          if [ "$(git status -uall --porcelain)" ]; then
-            echo "There are changes to the output on this push; pushing the changes."
-          else
+          if [ "$(git rev-parse HEAD)" == "$(git rev-parse deploy/${{ env.DEPLOY_BRANCH }})" ]; then
             echo "No changes to the output on this push; re-committing the latest commit to force a new deployment."
             git commit --amend --no-edit
+          else
+            echo "There are changes to the output on this push; pushing the changes."
           fi
 
       - name: Deploy site
