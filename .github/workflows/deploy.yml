@@ -5,7 +5,9 @@ on:
     workflows: ["Test building site"]
     types: [completed]
     branches: [master]
-  workflow_dispatch:
+
+env:
+  DEPLOY_BRANCH: master
 
 jobs:
   deploy:
@@ -15,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: master
+          ref: ${DEPLOY_BRANCH}
           fetch-depth: 0
 
       - name: Install SSH key for welzel.nu
@@ -48,12 +50,25 @@ jobs:
             IdentityFile ${PRIVATE_KEY}
           EOL
 
+      - name: Configure git
+        run: |
+          git config --global user.email "casper@welzel.nu"
+          git config --global user.name "Casper Welzel Andersen"
+          git remote add deploy deploy@welzel-nu:~/jekyll-theme-uni.git
+
+      - name: Check if there are changes with remote
+        run: |
+          git fetch deploy refs/heads/${DEPLOY_BRANCH}
+
+          if [ "$(git status -uall --porcelain)" ]; then
+            echo "There are changes to the output on this push; pushing the changes."
+          else
+            echo "No changes to the output on this push; re-committing the latest commit to force a new deployment."
+            git commit --amend --no-edit
+          fi
+
       - name: Deploy site
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          git config --global user.email "casper@welzel.nu"
-          git config --global user.name "Casper Welzel Andersen"
-
-          git remote add deploy deploy@welzel-nu:~/jekyll-theme-uni.git
-          git push -f deploy master
+          git push -f deploy ${DEPLOY_BRANCH}
